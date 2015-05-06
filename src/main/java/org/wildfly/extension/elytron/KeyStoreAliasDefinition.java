@@ -49,6 +49,7 @@ import org.jboss.as.controller.registry.OperationEntry;
 import org.jboss.dmr.ModelNode;
 import org.jboss.dmr.ModelType;
 import org.wildfly.extension.elytron.KeyStoreDefinition.KeyStoreRuntimeOnlyHandler;
+import org.wildfly.security.keystore.EnablingPasswordEntry;
 import org.wildfly.security.keystore.PasswordEntry;
 
 /**
@@ -65,7 +66,8 @@ class KeyStoreAliasDefinition extends SimpleResourceDefinition {
     static final SimpleAttributeDefinition ENTRY_TYPE = new SimpleAttributeDefinitionBuilder(ElytronDescriptionConstants.ENTRY_TYPE, ModelType.STRING)
         .setStorageRuntime()
         .setAllowedValues(PasswordEntry.class.getSimpleName(), PrivateKeyEntry.class.getSimpleName(),
-                          SecretKeyEntry.class.getSimpleName(), TrustedCertificateEntry.class.getSimpleName(), "Other")
+                          SecretKeyEntry.class.getSimpleName(), TrustedCertificateEntry.class.getSimpleName(),
+                          EnablingPasswordEntry.class.getSimpleName(), "Other")
         .build();
 
     KeyStoreAliasDefinition() {
@@ -113,6 +115,8 @@ class KeyStoreAliasDefinition extends SimpleResourceDefinition {
                         result.set(SecretKeyEntry.class.getSimpleName());
                     } else if (keyStore.entryInstanceOf(alias, TrustedCertificateEntry.class)) {
                         result.set(TrustedCertificateEntry.class.getSimpleName());
+                    } else if (keyStore.entryInstanceOf(alias, EnablingPasswordEntry.class)) {
+                        result.set(EnablingPasswordEntry.class.getSimpleName());
                     } else if (keyStore.entryInstanceOf(alias, PasswordEntry.class)) {
                         result.set(PasswordEntry.class.getSimpleName());
                     } else {
