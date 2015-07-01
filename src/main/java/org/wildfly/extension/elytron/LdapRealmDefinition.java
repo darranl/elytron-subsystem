@@ -46,13 +46,7 @@ import org.wildfly.extension.elytron.LdapAttributeDefinitions.PrincipalMappingAt
 import org.wildfly.security.auth.provider.ldap.DirContextFactory;
 import org.wildfly.security.auth.provider.ldap.LdapSecurityRealmBuilder;
 import org.wildfly.security.auth.provider.ldap.SimpleDirContextFactoryBuilder;
-import org.wildfly.security.auth.spi.CredentialSupport;
 import org.wildfly.security.auth.spi.SecurityRealm;
-import org.wildfly.security.password.interfaces.BSDUnixDESCryptPassword;
-import org.wildfly.security.password.interfaces.ClearPassword;
-import org.wildfly.security.password.interfaces.SaltedSimpleDigestPassword;
-import org.wildfly.security.password.interfaces.SimpleDigestPassword;
-import org.wildfly.security.password.interfaces.UnixDESCryptPassword;
 
 /**
  * A {@link ResourceDefinition} for a {@link SecurityRealm} backed by LDAP.
@@ -123,6 +117,7 @@ class LdapRealmDefinition extends SimpleResourceDefinition {
         private void configurePrincipalMapping(OperationContext context, ModelNode model, LdapSecurityRealmBuilder builder) throws OperationFailedException {
             ModelNode principalMappingNode = PrincipalMappingAttributes.PRINCIPAL_MAPPING.resolveModelAttribute(context, model);
 
+            /*
             builder.principalMapping()
                 .setNameAttribute(PrincipalMappingAttributes.NAME_ATTRIBUTE.resolveModelAttribute(context, principalMappingNode).asString())
                 .setNameIsDn(PrincipalMappingAttributes.USE_X500_NAME.resolveModelAttribute(context, principalMappingNode).asBoolean())
@@ -131,10 +126,12 @@ class LdapRealmDefinition extends SimpleResourceDefinition {
                 .setReloadPrincipalName(PrincipalMappingAttributes.CACHE_PRINCIPAL.resolveModelAttribute(context, principalMappingNode).asBoolean())
                 .setSearchDn(PrincipalMappingAttributes.SEARCH_BASE_DN.resolveModelAttribute(context, principalMappingNode).asString())
                 .build();
+                */
         }
 
         private void configureCredentialSupport(LdapSecurityRealmBuilder builder) {
             // for now, we support all available credential types. In the future we may want to provide a specific configuration to enable/disable this.
+            /*
             builder.userPassword()
                     .addCredentialSupport(ClearPassword.class, CredentialSupport.UNKNOWN)
                     .addCredentialSupport(SimpleDigestPassword.class, CredentialSupport.UNKNOWN)
@@ -142,6 +139,7 @@ class LdapRealmDefinition extends SimpleResourceDefinition {
                     .addCredentialSupport(BSDUnixDESCryptPassword.class, CredentialSupport.UNKNOWN)
                     .addCredentialSupport(UnixDESCryptPassword.class, CredentialSupport.UNKNOWN)
                     .build();
+                    */
         }
     }
 
