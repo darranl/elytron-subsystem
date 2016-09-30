@@ -79,6 +79,7 @@ import static org.wildfly.extension.elytron.ElytronDescriptionConstants.TLS;
 import static org.wildfly.extension.elytron.ElytronDescriptionConstants.TRUST_MANAGER;
 import static org.wildfly.extension.elytron.ElytronDescriptionConstants.TRUST_MANAGERS;
 import static org.wildfly.extension.elytron.ElytronDescriptionConstants.TYPE;
+import static org.wildfly.extension.elytron.ElytronDescriptionConstants.USE_CIPHER_SUITES_ORDER;
 import static org.wildfly.extension.elytron.ElytronDescriptionConstants.VALUE;
 import static org.wildfly.extension.elytron.ElytronDescriptionConstants.WANT_CLIENT_AUTH;
 import static org.wildfly.extension.elytron.ElytronSubsystemParser.verifyNamespace;
